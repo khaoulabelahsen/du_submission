@@ -13076,7 +13076,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[181]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -13117,7 +13117,8 @@ div#notebook {
 <pre><code>* Goal definition 
 * Getting the data 
 * Data cleaning and processing 
-* Insights and Vizualisation 
+* Insights and Vizualisation
+* Feature Engineering  
 * Meaningful prediction using Machine Learning 
 * Solution final proposal by giving the csv of prediction on the test dataset</code></pre>
 
@@ -13134,7 +13135,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># All the necessary import for the project </span>
@@ -13170,7 +13171,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Asus\Documents\Test Descartes Underwriting\auto-insurance-fall-2017\train_auto.csv&#39;</span>
@@ -13189,7 +13190,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[198]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13349,7 +13350,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[199]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Asus\Documents\Test Descartes Underwriting\auto-insurance-fall-2017\test_auto.csv&#39;</span>
@@ -13368,7 +13369,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[199]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -13554,15 +13555,363 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The train dataset is composed of 8161 samples and 25 features. 
-The following features have missing values that will need to be handled prior to a prediction : AGE,YOJ,INCOME,HOME_VAL,JOB, CAR_AGE</p>
+<p>The train dataset is composed of 8161 samples and 25 features.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[200]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_auto</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 8161 entries, 0 to 8160
+Data columns (total 26 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   INDEX        8161 non-null   int64  
+ 1   TARGET_FLAG  8161 non-null   int64  
+ 2   TARGET_AMT   8161 non-null   float64
+ 3   KIDSDRIV     8161 non-null   int64  
+ 4   AGE          8155 non-null   float64
+ 5   HOMEKIDS     8161 non-null   int64  
+ 6   YOJ          7707 non-null   float64
+ 7   INCOME       7716 non-null   object 
+ 8   PARENT1      8161 non-null   object 
+ 9   HOME_VAL     7697 non-null   object 
+ 10  MSTATUS      8161 non-null   object 
+ 11  SEX          8161 non-null   object 
+ 12  EDUCATION    8161 non-null   object 
+ 13  JOB          7635 non-null   object 
+ 14  TRAVTIME     8161 non-null   int64  
+ 15  CAR_USE      8161 non-null   object 
+ 16  BLUEBOOK     8161 non-null   object 
+ 17  TIF          8161 non-null   int64  
+ 18  CAR_TYPE     8161 non-null   object 
+ 19  RED_CAR      8161 non-null   object 
+ 20  OLDCLAIM     8161 non-null   object 
+ 21  CLM_FREQ     8161 non-null   int64  
+ 22  REVOKED      8161 non-null   object 
+ 23  MVR_PTS      8161 non-null   int64  
+ 24  CAR_AGE      7651 non-null   float64
+ 25  URBANICITY   8161 non-null   object 
+dtypes: float64(4), int64(8), object(14)
+memory usage: 1.6+ MB
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After doing some research, here is a summary of the different variables in the dataset, as well as my idea of their interest and impact for this study.</p>
+<table>
+<thead><tr>
+<th style="text-align:right">Variable</th>
+<th style="text-align:right"></th>
+<th style="text-align:right">Definition</th>
+<th style="text-align:right"></th>
+<th>Type</th>
+<th></th>
+<th>Effect</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">INDEX</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">index of the rows</td>
+<td style="text-align:right"></td>
+<td>-</td>
+<td></td>
+<td>I will not use it for my study </td>
+</tr>
+<tr>
+<td style="text-align:right">TARGET_FLAG</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">1 or 0 for if the insured made a claim</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>target to predict</td>
+</tr>
+<tr>
+<td style="text-align:right">PARENT1</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">single parents</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>describes insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">CAR_USE</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">type of use</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>most use == more risk ? </td>
+</tr>
+<tr>
+<td style="text-align:right">MSTATUS</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">marital status</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>stability of insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">RED_CAR</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">1 is car is red else 0</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>do red cars cost more ? </td>
+</tr>
+<tr>
+<td style="text-align:right">SEX</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">gender</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>gender statistics for accident probability ? </td>
+</tr>
+<tr>
+<td style="text-align:right">REVOKED</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">of driver's licence was revoked</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>risk of insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">CAR_TYPE</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">car type</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>effects the claim amount </td>
+</tr>
+<tr>
+<td style="text-align:right">URBANICITY</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">urban or not</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>describes insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">EDUCATION</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">level of education</td>
+<td style="text-align:right"></td>
+<td>categorical/ordinal</td>
+<td></td>
+<td>describes insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">JOB</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">job type</td>
+<td style="text-align:right"></td>
+<td>categorical</td>
+<td></td>
+<td>described insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">INCOME</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">income in $</td>
+<td style="text-align:right"></td>
+<td>continuous</td>
+<td></td>
+<td>describes insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">HOME_VAL</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">home value</td>
+<td style="text-align:right"></td>
+<td>continuous</td>
+<td></td>
+<td>describes insured client</td>
+</tr>
+<tr>
+<td style="text-align:right">TARGET_AMT</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">cost of claim</td>
+<td style="text-align:right"></td>
+<td>continuous</td>
+<td></td>
+<td>- </td>
+</tr>
+<tr>
+<td style="text-align:right">TRAVTIME</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">travel time to work</td>
+<td style="text-align:right"></td>
+<td>continuous</td>
+<td></td>
+<td>longer drives == most risk ? </td>
+</tr>
+<tr>
+<td style="text-align:right">BLUEBOOK</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">value of the car</td>
+<td style="text-align:right"></td>
+<td>continuous</td>
+<td></td>
+<td>effects the claim amount </td>
+</tr>
+<tr>
+<td style="text-align:right">OLDCLAIM</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">amount of past claims</td>
+<td style="text-align:right"></td>
+<td>continuous</td>
+<td></td>
+<td>effect of this amount on new claim amount </td>
+</tr>
+<tr>
+<td style="text-align:right">TIF</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">time in force</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+<td>time that contract is active </td>
+</tr>
+<tr>
+<td style="text-align:right">KIDSDRIV</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">number of kids driving</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+<td>increased risk with teens driving </td>
+</tr>
+<tr>
+<td style="text-align:right">AGE</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">age of driver</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+<td>young and old people increase risk </td>
+</tr>
+<tr>
+<td style="text-align:right">HOMEKIDS</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">number of kids at home</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+<td>describes insured client </td>
+</tr>
+<tr>
+<td style="text-align:right">YOJ</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">years on job</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+<td>gives idea of insured job stability </td>
+</tr>
+<tr>
+<td style="text-align:right">CLM_FREQ</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">number of past claims</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+<td>effects likeliness of new claim</td>
+</tr>
+<tr>
+<td style="text-align:right">MVR_PTS</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">number of points on license</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">CAR_AGE</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">age of the car</td>
+<td style="text-align:right"></td>
+<td>ordinal</td>
+<td></td>
+<td>effect on new claim </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3.-Data-Cleaning">3. Data Cleaning<a class="anchor-link" href="#3.-Data-Cleaning">&#182;</a></h1><h2 id="Refactoring-the-values-of-some-variable-:-Processing">Refactoring the values of some variable : Processing<a class="anchor-link" href="#Refactoring-the-values-of-some-variable-:-Processing">&#182;</a></h2><p>For features INCOME, HOME_VAL, BLUEBOOK, OLDCLAIM, we are going to process the dollar amount to turn them into continuous values</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">money_processing</span><span class="p">(</span><span class="n">train_auto</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;INCOME&#39;</span><span class="p">,</span> <span class="s1">&#39;HOME_VAL&#39;</span><span class="p">,</span><span class="s1">&#39;BLUEBOOK&#39;</span><span class="p">,</span> <span class="s1">&#39;OLDCLAIM&#39;</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">train_auto</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Handling-missing-values">Handling missing values<a class="anchor-link" href="#Handling-missing-values">&#182;</a></h2><p>The following features have missing values that will need to be handled prior to a prediction : AGE,YOJ,INCOME,HOME_VAL,JOB, CAR_AGE.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_missing_values</span><span class="p">(</span><span class="n">train_auto</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">)</span>
@@ -13588,7 +13937,7 @@ The following features have missing values that will need to be handled prior to
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[200]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -13602,6 +13951,18 @@ The following features have missing values that will need to be handled prior to
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see, the data is pretty complete with 5 variables having about 5-6% missing values. As a first study, I am going to impute those missing values using the following scheme :</p>
+
+<pre><code>* JOB : impute with the most common category aka the mode 
+* INCOME, HOME_VAL : impute using the mean value 
+* </code></pre>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13670,7 +14031,7 @@ The following features have missing values that will need to be handled prior to
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="3.-Insights-and-Visualization">3. Insights and Visualization<a class="anchor-link" href="#3.-Insights-and-Visualization">&#182;</a></h1><p>In this section, I'm going to perform a more in deep analysis of the data, through statistics and visualisation in order to better frame the problem that we are trying to solve.</p>
+<h1 id="4.-Insights-and-Visualization">4. Insights and Visualization<a class="anchor-link" href="#4.-Insights-and-Visualization">&#182;</a></h1><p>In this section, I'm going to perform a more in deep analysis of the data, through statistics and visualisation in order to better frame the problem that we are trying to solve.</p>
 
 </div>
 </div>
@@ -16171,43 +16532,9 @@ L 884.56019 294.61661
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.1-Processing-datatypes">3.1 Processing datatypes<a class="anchor-link" href="#3.1-Processing-datatypes">&#182;</a></h2><p>For features INCOME, HOME_VAL, BLUEBOOK, OLDCLAIM, we are going to process the dollar amount to turn them into continuous values</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[173]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">money_processing</span><span class="p">(</span><span class="n">train_auto</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;INCOME&#39;</span><span class="p">,</span> <span class="s1">&#39;HOME_VAL&#39;</span><span class="p">,</span><span class="s1">&#39;BLUEBOOK&#39;</span><span class="p">,</span> <span class="s1">&#39;OLDCLAIM&#39;</span><span class="p">]</span> <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[173]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
