@@ -18,7 +18,7 @@ def money_processing(dataset, features):
         - features : list of features to process
     """
     for feature in features: 
-        dataset[feature] = dataset[feature].apply(lambda x : float(str(x).strip('$').replace(',', '.')))
+        dataset[feature] = dataset[feature].apply(lambda x : float(str(x).strip('$').replace(',', '')))
 
     return 0 
 
