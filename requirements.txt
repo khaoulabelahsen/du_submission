@@ -1,3 +1,7 @@
-pandas_profiling 
 pandas
 numpy 
+scikit-learn
+matplotlib
+plotly
+seaborn 
+
